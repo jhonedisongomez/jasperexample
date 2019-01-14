@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="diocesis" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select a.CODIGO  CODIGO_DIOCESIS, a.NOMBRE NOMBRE_DIOCESIS, b.CODIGO CODIGO_SANTUARIO, b.NOMBRE NOMBRE_SANTUARIO, c.PROFESIONOFICIO from diocesis a, santuario b, miembro c where a.CODIGO = b.CODIGODIOCESIS and c.CODIGODIOCESIS = a.CODIGO and a.codigo = $P{diocesis}
+order by a.NOMBRE, b.NOMBRE;]]>
+	</queryString>
+	<field name="CODIGO_DIOCESIS" class="java.lang.String"/>
+	<field name="NOMBRE_DIOCESIS" class="java.lang.String"/>
+	<field name="CODIGO_SANTUARIO" class="java.lang.String"/>
+	<field name="NOMBRE_SANTUARIO" class="java.lang.String"/>
+	<field name="PROFESIONOFICIO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="DIOCESIS">
+		<groupExpression><![CDATA[$F{CODIGO_DIOCESIS}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement x="106" y="0" width="100" height="20"/>
+					<textFieldExpression><![CDATA[$F{CODIGO_DIOCESIS}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="6" y="0" width="100" height="20"/>
+					<text><![CDATA[Diocesis]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="50"/>
+		</groupFooter>
+	</group>
+	<group name="SANTUARIO">
+		<groupExpression><![CDATA[$F{CODIGO_SANTUARIO}]]></groupExpression>
+		<groupHeader>
+			<band height="55">
+				<staticText>
+					<reportElement x="6" y="0" width="100" height="20"/>
+					<text><![CDATA[Santuario]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="106" y="0" width="100" height="20"/>
+					<textFieldExpression><![CDATA[$F{CODIGO_SANTUARIO}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="35" width="100" height="20"/>
+					<text><![CDATA[PROFESIONOFICIO]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="50"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="476" height="79"/>
+				<text><![CDATA[PRUEBA DE REPORTE]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="106" y="15" width="100" height="20"/>
+				<textFieldExpression><![CDATA[$P{diocesis}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="15" width="100" height="20"/>
+				<text><![CDATA[prueba]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20"/>
+				<textFieldExpression><![CDATA[$F{PROFESIONOFICIO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
